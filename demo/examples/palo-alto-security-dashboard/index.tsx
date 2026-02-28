@@ -13,6 +13,31 @@
 
 // Main Dashboard
 export { Dashboard } from './Dashboard';
+export {
+  ATTACK_SOURCES,
+  DATE_RANGES,
+  DATE_RANGE_LABELS,
+  INCIDENT_STATUSES,
+  INCIDENT_STATUS_LABELS,
+  SEVERITIES,
+  SEVERITY_LABELS,
+  SOURCE_LABELS,
+  buildDashboardViewModel,
+  fetchDashboardData,
+} from './dashboardData';
+export type {
+  AttackSource,
+  DashboardFilters,
+  DashboardPayload,
+  DashboardViewModel,
+  DateRange,
+  IncidentRecord,
+  IncidentStatus,
+  KPIAlertLevel,
+  KPIId,
+  KPIValue,
+  Severity,
+} from './dashboardData';
 
 // Individual Components
 export { KPICard } from './KPICard';
