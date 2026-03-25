@@ -1,7 +1,7 @@
 # Feast Feature Store Example Dependencies
 
 # Core Feast
-feast==0.40.1
+feast==0.54.0
 
 # Data processing
 pandas==2.2.3
