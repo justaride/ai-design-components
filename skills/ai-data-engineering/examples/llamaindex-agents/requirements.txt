@@ -1,8 +1,8 @@
 # LlamaIndex Agent Example Dependencies
 
 # Core LlamaIndex
-llama-index==0.12.6
-llama-index-core==0.12.6
+llama-index==0.13.0
+llama-index-core==0.13.0
 
 # LLM Providers
 llama-index-llms-openai==0.3.18
@@ -11,7 +11,7 @@ llama-index-embeddings-voyageai==0.3.2
 
 # Vector Stores
 llama-index-vector-stores-qdrant==0.5.1
-qdrant-client==1.12.1
+qdrant-client==1.17.1
 
 # Utilities
 python-dotenv==1.0.1
