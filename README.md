@@ -1,160 +1,133 @@
-<p align="center">
-  <img src="https://ancoleman.github.io/ai-design-components/img/logo.png" alt="AI Design Components Logo" width="150">
-</p>
+# AI Design Components — justaride fork
 
-> Full-stack development skills for AI-assisted development with Claude
+Public fork of [`ancoleman/ai-design-components`](https://github.com/ancoleman/ai-design-components), retained to experiment with and extend the upstream Claude-skill/design-component collection.
 
-[![Version](https://img.shields.io/badge/version-0.5.0-blue.svg)](./VERSION)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
-[![Skills](https://img.shields.io/badge/skills-76-purple.svg)](https://ancoleman.github.io/ai-design-components/docs/skills/overview)
-[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-orange.svg)](https://ancoleman.github.io/ai-design-components/)
+| Field | Value |
+|---|---|
+| **Status** | Public fork with one local commit beyond the recorded upstream base |
+| **Last reviewed** | 2026-08-12 |
+| **This repository** | `justaride/ai-design-components` |
+| **Upstream** | `ancoleman/ai-design-components` |
+| **Recorded fork base** | upstream commit `76551b7b19ebc667764ec75da14990d0aef8b6e5` |
+| **Local change commit** | `c141a96e6766434f87deb2ba41967492727c8f65` |
+| **License** | MIT; preserve upstream notices and review third-party components individually |
+| **Canonical upstream docs** | Use the upstream repository/site for upstream installation and skill documentation |
 
-## What is this?
+> [!IMPORTANT]
+> This fork is not the canonical distribution of AI Design Components. The previous README presented upstream badges, URLs, skill counts, installation commands, and documentation as though they described this fork's maintenance state. Use upstream documentation for the upstream product, and this README for local fork differences and maintenance decisions.
 
-A collection of **76 production-ready Claude Skills** covering frontend, backend, DevOps, infrastructure, security, cloud, and AI/ML development. Skills provide Claude with domain expertise, decision frameworks, and production-ready code patterns.
+## Local purpose and changes
 
-## Documentation
+GitHub identifies this repository as a fork of `ancoleman/ai-design-components`. Compared with the recorded upstream base, the fork is one commit ahead:
 
-**Full documentation: [ancoleman.github.io/ai-design-components](https://ancoleman.github.io/ai-design-components/)**
+`feat(dashboard): add typed data model, drilldowns, and incident workbench`
 
-| Resource | Description |
-|----------|-------------|
-| [Getting Started](https://ancoleman.github.io/ai-design-components/docs/intro) | Introduction and overview |
-| [Installation](https://ancoleman.github.io/ai-design-components/docs/installation) | Setup instructions |
-| [Skills Reference](https://ancoleman.github.io/ai-design-components/docs/skills/overview) | All 76 skills documented |
-| [Skillchain Guide](https://ancoleman.github.io/ai-design-components/docs/skillchain/overview) | Guided workflow system |
+The local commit primarily extends:
 
-## Quick Start
+- `demo/examples/palo-alto-security-dashboard/`
+- a dedicated GitHub Actions build workflow for that example
+- typed dashboard data/model logic
+- filters, drill-downs, incident controls, sorting and workbench UI
+- responsive/accessibility-oriented styles
 
-### Option 1: Installer Script (Recommended)
+The rest of the repository is inherited from upstream unless a later local change says otherwise.
 
-The interactive installer handles everything - skills, skillchain, and plugins:
+## Upstream versus local truth
 
-```bash
-git clone https://github.com/ancoleman/ai-design-components.git
-cd ai-design-components
-./install.sh
-```
+| Topic | Source of truth |
+|---|---|
+| Upstream skills, installation, plugin groups, docs, version and roadmap | upstream repository and upstream documentation |
+| Local Palo Alto dashboard changes | this fork's local commit and example directory |
+| Fork sync/divergence status | GitHub compare between upstream `main` and this fork's `main` |
+| License/attribution | upstream `LICENSE`, notices, and individual third-party files |
 
-The installer provides:
-- **Interactive menu** for choosing what to install
-- **Skillchain v3.0** with 76 skills across 10 domains
-- **Plugin installation** for all 19 plugin groups
-- **Automatic setup** of commands and data directories
+Do not update upstream skill counts, badges, or installation instructions manually in this fork unless the fork is intentionally becoming an independent maintained distribution.
 
-```bash
-# Installer commands
-./install.sh                    # Interactive mode
-./install.sh plugins list       # See all available plugins
-./install.sh plugins install    # Install all plugins
-./install.sh skillchain         # Install skillchain only
-```
-
-### Option 2: Manual Plugin Installation
-
-If you prefer using Claude's plugin commands directly:
+## Inspect and run the local dashboard example
 
 ```bash
-# Add marketplace
-claude plugin marketplace add ancoleman/ai-design-components
-
-# Install all 19 plugins (76 skills)
-claude plugin install ui-foundation-skills@ai-design-components
-claude plugin install ui-data-skills@ai-design-components
-claude plugin install ui-input-skills@ai-design-components
-claude plugin install ui-interaction-skills@ai-design-components
-claude plugin install ui-structure-skills@ai-design-components
-claude plugin install ui-content-skills@ai-design-components
-claude plugin install ui-assembly-skills@ai-design-components
-claude plugin install backend-data-skills@ai-design-components
-claude plugin install backend-api-skills@ai-design-components
-claude plugin install backend-platform-skills@ai-design-components
-claude plugin install backend-ai-skills@ai-design-components
-claude plugin install devops-skills@ai-design-components
-claude plugin install infrastructure-skills@ai-design-components
-claude plugin install security-skills@ai-design-components
-claude plugin install developer-productivity-skills@ai-design-components
-claude plugin install data-engineering-skills@ai-design-components
-claude plugin install ai-ml-skills@ai-design-components
-claude plugin install cloud-provider-skills@ai-design-components
-claude plugin install finops-skills@ai-design-components
+cd demo/examples/palo-alto-security-dashboard
+npm install
+npm run dev
 ```
 
-### Option 3: Selective Installation
-
-Install only what you need:
+Build verification:
 
 ```bash
-# Add marketplace first
-claude plugin marketplace add ancoleman/ai-design-components
-
-# Install specific plugin groups
-claude plugin install infrastructure-skills@ai-design-components
-claude plugin install devops-skills@ai-design-components
-claude plugin install security-skills@ai-design-components
+npm run build
 ```
 
-## Plugin Commands Reference
+The local workflow `.github/workflows/palo-alto-dashboard-ci.yml` runs the example build for changes under that directory.
+
+## Data and security boundaries
+
+The Palo Alto dashboard is an example/demo surface. Unless a separate data contract proves otherwise:
+
+- displayed security events, incidents, KPIs, severity, status, assets and timelines are sample or modeled data
+- a chart, incident row, trend or status is not a live security finding
+- no production credentials, telemetry, customer data, IP addresses or incident records should be committed
+- product/company names and visual language may require trademark/brand review
+- the example must not imply endorsement by Palo Alto Networks
+- accessibility and build success do not establish security accuracy or production readiness
+
+Before connecting real data, define authentication, authorization, tenant isolation, retention, redaction, incident confidentiality, audit logging, rate limits, backend trust, and source provenance.
+
+## Syncing with upstream
+
+This fork should use an explicit maintenance strategy.
+
+### If the fork is only a patch/demo experiment
+
+1. keep the upstream relationship visible
+2. periodically compare upstream `main` with this fork
+3. rebase/merge only after reviewing conflicts and dependency/security changes
+4. keep local work isolated and documented
+5. contribute generally useful changes upstream where appropriate
+6. archive the fork when the experiment is no longer needed
+
+### If the fork is becoming an independent distribution
+
+Before doing so:
+
+1. rename/rebrand it clearly
+2. document local ownership and support
+3. replace upstream-only badges and installation URLs
+4. establish independent release/versioning and security policy
+5. audit all licenses, notices, names and documentation
+6. define update policy for inherited skills and plugins
+
+No such independent-distribution decision is documented today.
+
+## Verification
+
+For the local dashboard example:
 
 ```bash
-# Marketplace
-claude plugin marketplace add ancoleman/ai-design-components    # Add
-claude plugin marketplace rm ai-design-components               # Remove
-claude plugin marketplace list                                  # List all
-claude plugin marketplace update ai-design-components           # Update
-
-# Plugins
-claude plugin install <plugin>@ai-design-components             # Install
-claude plugin uninstall <plugin>                                # Uninstall
-
-# Validation
-claude plugin validate .claude-plugin/marketplace.json          # Validate
+cd demo/examples/palo-alto-security-dashboard
+npm install
+npm run build
 ```
 
-## Using Skillchain
+For broader inherited content, use the upstream project's documented validation commands for the specific component being changed, but verify that those commands still exist in this fork before running or citing them.
 
-Once installed, use the `/skillchain:start` command for guided workflows:
+Before publishing or installing from this fork:
 
-```bash
-/skillchain:start dashboard with charts and filters
-/skillchain:start REST API with postgres
-/skillchain:start kubernetes with monitoring
-/skillchain:start RAG pipeline with embeddings
-```
+- inspect the GitHub compare against upstream
+- review the local commit and workflow
+- scan dependencies and repository secrets
+- verify MIT attribution and third-party notices
+- avoid presenting upstream documentation/version/counts as fork maintenance evidence
 
-## Skill Categories
+## Recommended owner decision
 
-| Category | Skills | Description |
-|----------|--------|-------------|
-| **Frontend** | 15 | UI components, forms, data viz, navigation |
-| **Backend** | 14 | Databases, APIs, auth, observability |
-| **DevOps** | 6 | CI/CD, GitOps, platform engineering |
-| **Infrastructure** | 12 | IaC, Kubernetes, networking, distributed systems |
-| **Security** | 7 | Architecture, compliance, TLS, hardening |
-| **Developer Productivity** | 7 | APIs, CLIs, SDKs, documentation |
-| **Data Engineering** | 6 | Architecture, streaming, SQL, secrets |
-| **AI/ML** | 4 | MLOps, RAG, prompt engineering |
-| **Cloud** | 3 | AWS, GCP, Azure patterns |
-| **FinOps** | 2 | Cost optimization, tagging |
+Choose and record one of:
 
-See [Skills Overview](https://ancoleman.github.io/ai-design-components/docs/skills/overview) for the complete list.
+- **temporary demo fork** — retain the local example, periodically sync, then archive
+- **upstream contribution branch** — submit the dashboard change upstream and remove the long-lived fork
+- **independent maintained fork** — establish new name, ownership, releases and documentation
 
-## Prerequisites
+Until that decision is made, this repository remains an upstream fork with a specific local dashboard experiment.
 
-- **Claude Code CLI** - [Install Claude Code](https://docs.anthropic.com/en/docs/claude-code)
-- **Context7 MCP** (recommended) - For up-to-date library documentation
+## Maintenance rule
 
-## Resources
-
-- [Plugin Commands Reference](https://ancoleman.github.io/ai-design-components/docs/guides/plugin-commands) - Complete CLI reference for marketplace/plugin management
-- [Anthropic Skills Documentation](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
-- [Skills Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
-- [LLM Ecosystem Guide](https://ancoleman.github.io/ai-design-components/llm-ecosystem)
-
-## License
-
-MIT License - See [LICENSE](./LICENSE) for details.
-
----
-
-**[View Full Documentation](https://ancoleman.github.io/ai-design-components/)** | Built following [Anthropic's Skills best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+Update this README whenever the upstream base, local divergence, sync policy, local example, ownership, public installation guidance, or lifecycle changes. Preserve upstream attribution and never replace the local fork identity with unqualified upstream marketing copy.
